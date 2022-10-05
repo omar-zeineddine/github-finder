@@ -69,7 +69,7 @@ export const GithubProvider = ({ children }) => {
   const getUserRepos = async (login) => {
     setLoading();
 
-    const response = await fetch(`${URL}/search/users?${login}/repos`, {
+    const response = await fetch(`${URL}/users/${login}/repos`, {
       headers: {
         Authorization: `token ${TOKEN}`,
       },
@@ -77,8 +77,6 @@ export const GithubProvider = ({ children }) => {
 
     const { data } = await response.json();
 
-    // setUsers(data);
-    // setLoading(false);
     dispatch({
       type: "GET_REPOS",
       payload: data,
