@@ -72,7 +72,7 @@ export const GithubProvider = ({ children }) => {
     // search params
     const params = new URLSearchParams({
       sort: "created",
-      per_page: 10,
+      per_page: 5,
     });
 
     const response = await fetch(`${URL}/users/${login}/repos?${params}`, {
@@ -102,11 +102,8 @@ export const GithubProvider = ({ children }) => {
   return (
     <GithubContext.Provider
       value={{
-        users: state.users,
-        user: state.user,
-        loading: state.loading,
-        repos: state.repos,
-        searchUsers,
+        ...state,
+        dispatch,
         clearUsers,
         getUser,
         getUserRepos,
